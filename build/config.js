@@ -13,7 +13,7 @@ module.exports = {
     proxy: {
       '/api': {
         // api表示当前项目请求的key
-        target: '', // 代理服务器路径
+        target: 'https://www.zuihongniang.com/drunken_hn', // 代理服务器路径
         pathRewrite: { '^/api': '' }, // 重写路径
         changeOrigin: true
       }

@@ -1,10 +1,10 @@
-import App from '../App'
+import Layout from '../layout'
 
 const home = r => require.ensure([], () => r(require('@/pages/Home')), 'home')
 
 export default [{
   path: '/',
-  component: App,
+  component: Layout,
   children: [
     {
       path: '',
@@ -12,6 +12,7 @@ export default [{
     },
     {
       path: '/home',
+      name: 'Home',
       component: home
     }
   ]
