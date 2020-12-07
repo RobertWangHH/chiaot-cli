@@ -23,5 +23,7 @@ module.exports = {
     process.env.NODE_ENV === 'development'
       ? 'eval'
       : 'nosources-source-map',
-  extractCss: process.env.NODE_ENV !== 'development'
+  extractCss: process.env.NODE_ENV !== 'development',
+  bundleAnalyzerReport: process.env.NODE_ENV !== 'development',
+  productionGzipExtensions: []
 }

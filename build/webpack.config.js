@@ -41,4 +41,9 @@ if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(webpackConfig, listen)
 }
 
+if (config.bundleAnalyzerReport) {
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+}
+
 module.exports = webpackConfig

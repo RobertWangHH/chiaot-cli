@@ -4,7 +4,7 @@
       <a-form-model layout="inline" :model="formInline" @submit="handleSubmit" @submit.native.prevent v-if="searchList">
         <a-form-model-item v-for="(item, index) in searchList" :key="`search-${index + 1}`">
           <a-input class="w-150" v-model="formInline[item.key]" :placeholder="item.placeholder" v-if="item.type === 1" />
-          <a-select class="w-150" v-model="formInline[item.key]" v-else-if="item.type === 2" :placeholder="item.placeholder">
+          <a-select class="w-150" v-model="formInline[item.key]" v-else-if="item.type === 2" :placeholder="item.placeholder" @change="handleSelectChange">
             <a-select-option :value="val.value" v-for="val in item.options" :key="val.value">{{ val.label }}</a-select-option>
           </a-select>
         </a-form-model-item>
@@ -16,7 +16,7 @@
             >
               查询
             </a-button>
-            <a-button @click="resetSearchForm">重置</a-button>
+            <a-button @click="reset">重置</a-button>
           </a-space>
         </a-form-model-item>
       </a-form-model>
@@ -151,6 +151,15 @@
         this.selectedRowKeys = selectedRowKeys
       },
 
+      handleSelectChange() {
+        this.$forceUpdate()
+      },
+
+      reset() {
+        this.resetSearchForm()
+        this.fetch(this.currentPage, this.pageSize, _.cloneDeep(this.formInline))
+      },
+
       resetSearchForm() {
         if (this.searchList) {
           this.searchList.map(item => {
@@ -195,7 +204,8 @@
     async mounted() {
       console.log('组件初始化')
       this.resetSearchForm()
-      await this.fetch(this.currentPage, this.pageSize, {})
+      if (!this.pager) this.pagination = false
+      await this.fetch(this.currentPage, this.pageSize, _.cloneDeep(this.formInline))
     }
   }
 </script>
