@@ -1,5 +1,6 @@
 <template>
   <div>
+    <baidu-map class="map"></baidu-map>
     <chiaot-table rowKey="id" store="home" :pager="true" :http="fetchList" :options="options" :searchList="searchList" :actions="['add']" />
   </div>
 </template>
@@ -119,3 +120,9 @@
     }
   }
 </script>
+
+<style lang="less" scoped>
+  .map {
+    height: 300px;
+  }
+</style>

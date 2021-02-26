@@ -87,7 +87,7 @@
 
   .content-main {
     margin: 80px 24px 16px;
-    padding: 24px;
+    padding: 12px;
     background: rgb(255, 255, 255);
     min-height: calc(100vh - 96px);
     box-sizing: border-box;

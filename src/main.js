@@ -10,11 +10,15 @@ import VueRouter from 'vue-router'
 import routes from './router'
 import store from './store'
 import App from './App'
+import BaiduMap from 'vue-baidu-map'
 
 import AntV from 'ant-design-vue'
 
 Vue.use(VueRouter)
 Vue.use(AntV)
+Vue.use(BaiduMap, {
+  ak: 'QdZ0BEb2oCzu25D64PoaMqUpxATq4EOy'
+})
 
 import '@/style/index.less'
 

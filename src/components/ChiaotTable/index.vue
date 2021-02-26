@@ -3,35 +3,37 @@
     <div class="header">
       <a-form-model layout="inline" :model="formInline" @submit="handleSubmit" @submit.native.prevent v-if="searchList">
         <a-form-model-item v-for="(item, index) in searchList" :key="`search-${index + 1}`">
-          <a-input class="w-150" v-model="formInline[item.key]" :placeholder="item.placeholder" v-if="item.type === 1" />
-          <a-select class="w-150" v-model="formInline[item.key]" v-else-if="item.type === 2" :placeholder="item.placeholder" @change="handleSelectChange">
+          <a-input size="small" class="w-120" v-model="formInline[item.key]" :placeholder="item.placeholder" v-if="item.type === 1" />
+          <a-select size="small" class="w-120" v-model="formInline[item.key]" v-else-if="item.type === 2" :placeholder="item.placeholder" @change="handleSelectChange">
             <a-select-option :value="val.value" v-for="val in item.options" :key="val.value">{{ val.label }}</a-select-option>
           </a-select>
         </a-form-model-item>
         <a-form-model-item>
           <a-space>
             <a-button
+                size="small"
                 type="primary"
                 html-type="submit"
             >
               查询
             </a-button>
-            <a-button @click="reset">重置</a-button>
+            <a-button size="small" @click="reset">重置</a-button>
           </a-space>
         </a-form-model-item>
       </a-form-model>
 
       <div>
         <a-space>
-          <a-button type="primary" icon="plus" v-if="actions && actions.includes('add')" @click="$emit('add')" ghost>新增</a-button>
-          <a-button type="primary" icon="edit" v-if="actions && actions.includes('edit')" :disabled="selectedRowKeys.length !== 1" ghost>修改</a-button>
-          <a-button type="danger" icon="delete" v-if="actions && actions.includes('remove')" :disabled="selectedRowKeys.length < 1" ghost>删除</a-button>
+          <a-button size="small" type="primary" icon="plus" v-if="actions && actions.includes('add')" @click="$emit('add')" ghost>新增</a-button>
+          <a-button size="small" type="primary" icon="edit" v-if="actions && actions.includes('edit')" :disabled="selectedRowKeys.length !== 1" ghost>修改</a-button>
+          <a-button size="small" type="danger" icon="delete" v-if="actions && actions.includes('remove')" :disabled="selectedRowKeys.length < 1" ghost>删除</a-button>
         </a-space>
       </div>
     </div>
 
     <div class="table">
-      <a-table :rowKey="item => item[rowKey]"
+      <a-table size="small"
+               :rowKey="item => item[rowKey]"
                :loading="loading"
                :data-source="data"
                :pagination="pagination"

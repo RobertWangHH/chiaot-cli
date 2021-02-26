@@ -9,7 +9,6 @@ const styleRules = require('./rules/styleRules')
 const jsRules = require('./rules/jsRules')
 const fileRules = require('./rules/fileRules')
 const vueRules = require('./rules/vueRules')
-const listen = require('./listen')
 const plugins = require('./plugin')
 const optimization = require('./optimization')
 
@@ -24,7 +23,7 @@ const webpackConfig = {
     filename: '[name].[chunkhash:5].js'
   },
   module: {
-    rules: [...styleRules, ...fileRules, ...vueRules]
+    rules: [...styleRules, ...fileRules, ...vueRules, ...jsRules]
   },
   resolve: {
     extensions: constants.FILE_EXTENSIONS,
@@ -35,10 +34,6 @@ const webpackConfig = {
   devServer: config.proxyTable,
   plugins,
   optimization
-}
-
-if (process.env.NODE_ENV === 'development') {
-  const compiler = webpack(webpackConfig, listen)
 }
 
 if (config.bundleAnalyzerReport) {
